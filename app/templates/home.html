@@ -1,0 +1,22 @@
+<div ng-repeat="ad in data.ads">
+    <table id="adTable">
+        <thead>
+        <th colspan="2">{{ad.title}}</th><th>{{ad.date| date : format : timezone}}</th>
+        </thead>
+        <tr>
+            <td rowspan="2">
+                <img ng-src="{{ad.imageDataUrl}}" err-src="./images/no-image.png" />
+                <img ng-if="!ad.imageDataUrl" ng-src="./images/no-image.png" />
+            </td><td colspan="2">{{ad.text}}</td><td></td>
+        </tr>
+        <tr>
+            <td>Name:</td><td>{{ad.ownerName}}</td>
+        </tr>
+        <tr>
+            <td></td><td>Em@il:</td><td>{{ad.ownerEmail}}</td>
+        </tr>
+        <tr>
+            <td></td><td>Tel:</td><td>{{ad.ownerPhone}}</td>
+        </tr>
+    </table>
+</div>

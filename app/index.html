@@ -7,7 +7,27 @@
         <link rel="stylesheet" type="text/css" href="css/app.css">
     </head>
     <body>
-        <div>TODO write content</div>
+        <header><h1>Ads - Home</h1></header>
+        <section class="container">
+            <section class="col-sm-2">
+                <nav id="mainNav" class="boxDefault">
+                    <h2>Navigation</h2>
+                    <ul>
+                        <li><a href="#/ads">Home</a></li>
+                    </ul>
+                </nav>
+                <div class="boxDefault">
+                    To publish a new ad, please login.
+                    <a href="#/login" class="button">Login</a>
+                    <a href="#/register" class="button">Register</a>
+                </div>
+            </section>
+
+            <section class="col-sm-8"></section>
+
+            <section class="col-sm-2" ng-include="'views/townsNcategories.html'"></section>
+        </section>
+        <footer>&#169; 2014 by Software University Foundation, No Rights Reserved</footer>
         <script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript"  src="lib/angular/angular.js"></script>
     </body>

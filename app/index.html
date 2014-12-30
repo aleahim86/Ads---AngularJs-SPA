@@ -11,7 +11,7 @@
         <section class="container">
             <section class="col-sm-2">
                 <nav id="mainNav" class="boxDefault">
-                    <h2>Navigation</h2>
+                    <span class="navTitle">Navigation</span>
                     <ul>
                         <li><a href="#/ads">Home</a></li>
                     </ul>
@@ -25,7 +25,23 @@
 
             <section class="col-sm-8"></section>
 
-            <section class="col-sm-2" ng-include="'views/townsNcategories.html'"></section>
+            <section class="col-sm-2">
+                <nav id="categoriesNav" class="boxDefault">
+                     <span class="navTitle">Categories</span>
+                    <ul>
+                        <li><a href="#">All</a></li>
+                        <li><a href="#">Cars</a></li>
+                    </ul>
+                </nav>
+                <nav id="townsNav" class="boxDefault">
+                    <span class="navTitle">Towns</span>
+                    <ul>
+                        <li><a href="#">All</a></li>
+                        <li><a href="#">Plovdiv</a></li>
+                        <li><a href="#">Sofia</a></li>
+                    </ul>
+                </nav>
+            </section>
         </section>
         <footer>&#169; 2014 by Software University Foundation, No Rights Reserved</footer>
         <script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

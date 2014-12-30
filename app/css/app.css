@@ -7,7 +7,7 @@
     font-size: 0;
 }
 h1, h2{
-    font-size: 20px;
+    font-size: 18px;
     margin: 0px;
     font-weight: bold;
 }
@@ -36,9 +36,15 @@ footer{
     box-shadow: 1px 1px 3px #888888;
     text-align: center;
 }
-.boxDefault h2{
+.navTitle{
+    margin: 0px;
+    font-weight: bold;
+    display:block;
     border-bottom: 1px solid #507e32;
     padding-bottom: 10px;
+}
+.boxDefault h2{
+    
 }
 .boxDefault ul{
     list-style: none;

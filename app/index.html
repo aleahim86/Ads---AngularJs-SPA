@@ -31,17 +31,25 @@
                     <table>
                         <tr>
                             <td class="paramTitle">Title:</td>
-                            <td colspan="2"></td>
-                            <td rowspan="2"></td>
+                            <td colspan="2">
+                                <input type="text" name="adTitle" value="{{ad.title}}" ng-model="ad.title">
+                            </td>
+                            <td rowspan="2" class="editImgHolder">
+                                <img ng-if="!ad.imageDataUrl" ng-src="img/no-image.png"/>
+                            </td>
                         </tr>
                         <tr>
                             <td class="paramTitle">Text:</td>
-                            <td colspan="2"></td>
+                            <td colspan="2">
+                                <textarea rows="2" cols="20" ng-model="ad.text">
+                                    {{ad.text}}
+                                </textarea>
+                            </td>
                         </tr>
                         <tr>
                             <td class="paramTitle">Image:</td>
-                            <td></td>
-                            <td><a href="" class="button">Browse</a></td>
+                            <td ng-model="ad.imageDataUrl"></td>
+                            <td style="width: 15%"><a href="" class="button">Browse</a></td>
                             <td><a href="" class="button">Change Image</a></td>
                         </tr>
                         <tr>
@@ -123,7 +131,9 @@
         <footer>&#169; 2014 by Software University Foundation, No Rights Reserved</footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular/angular-resource.js"></script>
         <script src="js/app.js"></script>
+        <script src="js/services/adsData.js"></script>
         <script src="js/controllers/AdsController.js"></script>
         <script src="js/controllers/CategoriesController.js"></script>
         <script src="js/controllers/TownsController.js"></script>

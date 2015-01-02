@@ -26,6 +26,37 @@
                 </div>
             </section>   
             <section class="col-sm-8">
+                <div ng-controller="EditAdController" class="boxDefault boxBorderRadius">
+                    <span class="navTitle">Edit Ad</span>
+                    <table>
+                        <tr>
+                            <td class="paramTitle">Title:</td>
+                            <td colspan="2"></td>
+                            <td rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td class="paramTitle">Text:</td>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td class="paramTitle">Image:</td>
+                            <td></td>
+                            <td><a href="" class="button">Browse</a></td>
+                            <td><a href="" class="button">Change Image</a></td>
+                        </tr>
+                        <tr>
+                            <td class="paramTitle">Category:</td>
+                            <td>select</td>
+                            <td></td>
+                            <td><a href="" class="button">Delete Image</a></td>
+                        </tr>
+                        <tr>
+                            <td class="paramTitle">Town:</td>
+                            <td>select</td>
+                            <td colspan="2"></td>
+                        </tr>
+                    </table>
+                </div>
                 <div ng-controller="AdsController">
                     <table class="adHolder">
                         <tr>
@@ -97,5 +128,6 @@
         <script src="js/controllers/CategoriesController.js"></script>
         <script src="js/controllers/TownsController.js"></script>
         <script src="js/controllers/UserController.js"></script>
+        <script src="js/controllers/EditAdController.js"></script>
     </body>
 </html>

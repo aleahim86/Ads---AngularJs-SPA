@@ -75,21 +75,46 @@ footer{
 }
 .adHolder{
     width: 100%;
+    margin-top: 20px;
+    background: #a9d18e;
+    border: 1px solid #507e32;
+    box-shadow: 1px 1px 3px #888888;
+}
+.adImageHolder img{
+    width: 100%;
+    background: #c5e0b4;
+    border: 1px dashed #649b3f;
+    padding: 5px;
 }
 .adHolder th{
     position:relative;
+    padding: 20px 20px 0px 20px;
 }
 .adHolder tr{
 
 }
 .adHolder tr td{
-
+    padding: 20px 0px 10px 20px;
+    text-align: left;
 }
-.dateHolder{
+.adImageHolder{
+    width: 30%;
+    vertical-align: top;
+    padding-right: 0px;
+}
+.adDateHolder{
     float: right;
     display: inline;
+    font-weight: normal;
+    font-size: 15px;
 }
-.titleHolder{
+.adTitleHolder{
     float: left;
     display: inline;
+}
+.boxAdContent{
+    background: #c5e0b4;
+    border: 1px dashed #649b3f;
+    padding: 5px;
+    margin-right: 20px;
 }

@@ -10,10 +10,13 @@
         <header><h1>Ads - Home</h1></header>
         <section class="container">
             <section class="col-sm-2">
-                <nav id="mainNav" class="boxDefault">
+                <nav id="mainNav" class="boxDefault" ng-controller="UserController">
                     <span class="navTitle">Navigation</span>
                     <ul>
                         <li><a href="#/">Home</a></li>
+                        <li ng-hide="hideFullMenu"><a href="#/">My Ads</a></li>
+                        <li ng-hide="hideFullMenu"><a href="#/">Publish New Ad</a></li>
+                        <li ng-hide="hideFullMenu"><a href="#/">Edit Profile</a></li>
                     </ul>
                 </nav>
                 <div class="boxDefault">
@@ -21,8 +24,7 @@
                     <a href="#/login" class="button">Login</a>
                     <a href="#/register" class="button">Register</a>
                 </div>
-            </section>
-
+            </section>   
             <section class="col-sm-8">
                 <div ng-controller="AdsController">
                     <table class="adHolder">
@@ -66,7 +68,7 @@
                                 </div>
                             </td>
                         </tr>
-                    </table>
+                    </table>    
                 </div>
             </section>
 
@@ -94,5 +96,6 @@
         <script src="js/controllers/AdsController.js"></script>
         <script src="js/controllers/CategoriesController.js"></script>
         <script src="js/controllers/TownsController.js"></script>
+        <script src="js/controllers/UserController.js"></script>
     </body>
 </html>

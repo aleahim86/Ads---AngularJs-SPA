@@ -73,3 +73,23 @@ footer{
     border: 1px solid #568736;
     border-radius: 10px;
 }
+.adHolder{
+    width: 100%;
+}
+.adHolder th{
+    position:relative;
+}
+.adHolder tr{
+
+}
+.adHolder tr td{
+
+}
+.dateHolder{
+    float: right;
+    display: inline;
+}
+.titleHolder{
+    float: left;
+    display: inline;
+}

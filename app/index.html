@@ -1,12 +1,12 @@
 <html>
     <head>
-        <title>Ads SPA AngularJs</title>
+        <title>Ads - SPA with AngularJs</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
     </head>
-    <body>
+    <body ng-app="adsApp">
         <header><h1>Ads - Home</h1></header>
         <section class="container">
             <section class="col-sm-2">
@@ -23,22 +23,53 @@
                 </div>
             </section>
 
-            <section class="col-sm-8" ng-view></section>
+            <section class="col-sm-8">
+                <div ng-controller="AdsController">
+                    <div>
+                        <table class="boxDefault adHolder">
+                            <tr>
+                                <th colspan="3">
+                                    <div class="titleHolder">{{ad.title}}</div>
+                                    <div class="dateHolder">{{ad.date| date : format : timezone}}</div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td rowspan="4">
+                                    <img ng-src="{{ad.imageDataUrl}}" err-src="./img/no-image.png" />
+                                    
+                                </td>
+                                <td colspan="2">{{ad.text}}</td>
+                            </tr>
+                            <tr>
+                                <td>Name:</td>
+                                <td>{{ad.ownerName}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td>{{ad.ownerEmail}}</td>
+                            </tr>
+                            <tr>
+                                <td>Tel:</td>
+                                <td>{{ad.ownerPhone}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
 
             <section class="col-sm-2">
-                <nav id="categoriesNav" class="boxDefault" data-ng-controller="CategoriesController">
+                <nav id="categoriesNav" class="boxDefault" ng-controller="CategoriesController">
                     <span class="navTitle">Categories</span>
                     <ul>
                         <li><a href="#/">All</a></li>
-                        <li ng-repeat="Category in Categories"><a href="#">Category.name</a></li>
+                        <li><a id="{{category.id}}" href="">{{category.name}}</a></li>
                     </ul>
                 </nav>
-                <nav id="townsNav" class="boxDefault">
+                <nav id="townsNav" class="boxDefault" ng-controller="TownsController">
                     <span class="navTitle">Towns</span>
                     <ul>
-                        <li><a href="#">All</a></li>
-                        <li><a href="#">Plovdiv</a></li>
-                        <li><a href="#">Sofia</a></li>
+                        <li><a href="#/">All</a></li>
+                        <li><a id="{{town.id}}" href="#">{{town.name}}</a></li>
                     </ul>
                 </nav>
             </section>
@@ -47,8 +78,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="lib/angular/angular.js"></script>
         <script src="js/app.js"></script>
-        <script src="js/services/adsData.js"></script>
-        <script src="js/controllers/AllAdsController.js"></script>
+        <script src="js/controllers/AdsController.js"></script>
         <script src="js/controllers/CategoriesController.js"></script>
+        <script src="js/controllers/TownsController.js"></script>
     </body>
 </html>

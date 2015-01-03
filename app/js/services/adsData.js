@@ -7,7 +7,7 @@ adsApp.factory('adsData', function ($http, $location) {
                     success(data);
                 })
                 .error(function () {
-                    alert('Can\'t load categories');
+                    showErrorMessage('Can\'t load categories');
                 });
     }
     function getAllAds(success) {
@@ -16,7 +16,7 @@ adsApp.factory('adsData', function ($http, $location) {
                     success(data);
                 })
                 .error(function () {
-                    alert('Can\'t load ads');
+                    showErrorMessage('Can\'t load ads');
                 });
     }
     function getTowns(success) {
@@ -25,12 +25,41 @@ adsApp.factory('adsData', function ($http, $location) {
                     success(data);
                 })
                 .error(function () {
-                    alert('Can\'t load towns');
+                    showErrorMessage('Can\'t load towns');
                 });
-    }   
+    } 
+    function showAjaxError(msg, error) {
+        var errMsg = error.responseJSON;
+        if (errMsg && errMsg.error) {
+            showErrorMessage(msg + ": " + errMsg.error);
+        } else {
+            showErrorMessage(msg + ".");
+        }
+    }
+
+    function showInfoMessage(msg) {
+        noty({
+            text: msg,
+            type: 'success',
+            layout: 'topCenter',
+            timeout: 5000}
+        );
+    }
+
+    function showErrorMessage(msg) {
+        noty({
+            text: msg,
+            type: 'error',
+            layout: 'topCenter',
+            timeout: 5000}
+        );
+    }
     return {
         getCategories: getCategories,
         getAllAds: getAllAds,
-        getTowns: getTowns
+        getTowns: getTowns,
+        showAjaxError: showAjaxError,
+        showInfoMessage: showInfoMessage,
+        showErrorMessage: showErrorMessage
     };
 });

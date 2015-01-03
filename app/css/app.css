@@ -35,8 +35,8 @@ footer{
     box-shadow: 1px 1px 3px #888888;
     text-align: center;
 }
-.navTitle{
-    margin: 0px;
+.boxTitle{
+    margin-bottom: 15px;
     font-weight: bold;
     display:block;
     border-bottom: 1px solid #507e32;
@@ -72,6 +72,7 @@ footer{
     background: #70ad47;
     border: 1px solid #568736;
     border-radius: 10px;
+    text-align: center;
 }
 .adHolder{
     width: 100%;
@@ -123,4 +124,27 @@ footer{
 }
 .paramTitle{
     text-align: right;
+}
+.editImgHolder{
+    width: 25%;
+}
+.editImgHolder img{
+    width: 80%;
+}
+.inputHolder{
+    width:50%;
+    text-align:left;
+    float:left;
+}
+.inputHolder label{
+    width: 100%;
+}
+.inputHolder input, .inputHolder select{
+    width: 90%;
+}
+.formControls{
+    
+}
+.formControls button{
+    
 }

@@ -132,19 +132,41 @@ footer{
     width: 80%;
 }
 .inputHolder{
-    width:50%;
     text-align:left;
     float:left;
 }
-.inputHolder label{
+#loginFormHolder {
+    width: 50%;
+    margin: 20px auto;
+}
+#regitsterFormHolder .inputHolder{
+    width:50%;
+}
+#loginFormHolder .inputHolder{
+    width:100%;
+}
+#regitsterFormHolder .inputHolder label{
     width: 100%;
 }
-.inputHolder input, .inputHolder select{
+#loginFormHolder .inputHolder label{
+    width: 100%;
+}
+#loginFormHolder .inputHolder input{
+    width: 100%;
+}
+
+#regitsterFormHolder .inputHolder input, #regitsterFormHolder .inputHolder select{
     width: 90%;
 }
 .formControls{
-    
+    width: 100%;
+    float: left;
+    margin-top: 20px;
 }
 .formControls button{
-    
+
 }
+#paginationHolder{
+    text-align:center;
+}
+

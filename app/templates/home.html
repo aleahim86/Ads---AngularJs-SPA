@@ -1,5 +1,5 @@
 <div>
-    <div ng-repeat="ad in ads">
+    <div dir-paginate="ad in ads | filter: query | itemsPerPage: adsPerPage" total-items="totalAds" >
         <table class="adHolder">
             <tr>
                 <th colspan="3" class="clearfix">
@@ -45,3 +45,8 @@
         </table>
     </div>
 </div>
+<div id="paginationHolder">
+    <dir-pagination-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)" template-url="templates/dirPagination.tpl.html"></dir-pagination-controls>
+</div>
+
+

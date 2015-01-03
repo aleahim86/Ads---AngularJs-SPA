@@ -1,0 +1,17 @@
+<div id="loginFormHolder" class="boxDefault boxBorderRadius">
+    <span class="boxTitle">Login</span>
+    <form class="clearfix">
+        <div class="inputHolder">
+            <label for="username">Username:</label>
+            <input type="text" id="username" ng-model="user.username">
+        </div>
+        <div class="inputHolder">
+            <label for="password">Password:</label>
+            <input type="password" id="password" ng-model="user.password"  required=""/>
+        </div>
+        <div class="formControls">
+            <button ng-click="tryingToLog(user)">Login</button>
+            <a ng-href="#/register" class="link">register here</a>
+        </div>
+    </form>
+</div>

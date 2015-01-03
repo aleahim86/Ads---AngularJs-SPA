@@ -10,8 +10,8 @@ adsApp.factory('adsData', function ($http, $location) {
                     showErrorMessage('Can\'t load categories');
                 });
     }
-    function getAllAds(success) {
-        $http.get('http://softuni-ads.azurewebsites.net/api/ads')
+    function getAllAds(pageNumber, townId, categoryId, success) {
+        $http.get('http://softuni-ads.azurewebsites.net/api/ads?pagesize=5&startpage=' + pageNumber + '&TownId=' + townId + '&CategoryId=' + categoryId)
                 .success(function (data) {
                     success(data);
                 })

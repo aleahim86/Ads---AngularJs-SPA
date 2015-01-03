@@ -1,0 +1,21 @@
+                <div id="regitsterFormHolder" class="boxDefault boxBorderRadius">
+                    <span class="boxTitle">User Registration</span>
+                    <form>
+                        <label for="username" style="width: 100%;">Username:</label>
+                        <input type="text" id="username" ng-model="user.title"  style="width: 100%;">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" ng-model="user.password"  required=""/>
+                        <label for="confirmPassword">Confirm password:</label>
+                        <input type="password" id="confirmPassword" ng-model="user.confirmPassword" required=""/>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" ng-model="user.name"  required=""/>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" ng-model="user.email" required=""/>
+                        <label for="phone">Phone:</label>
+                        <input type="text" id="phone" ng-model="user.phone" required=""/>
+                        <label for="town">Town:</label>
+                        <select ng-model="user.townId" id="town">
+                            <option ng-repeat="town in towns" value="{{town.id}}">{{town.name}}</option>
+                        </select>
+                    </form>
+                </div>

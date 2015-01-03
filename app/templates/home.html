@@ -1,23 +1,46 @@
-<div ng-controller="AllAdsController">
-    <div ng-repeat="ad in data.ads">
-        <table id="adTable">
-            <thead>
-            <th colspan="2">{{ad.title}}</th><th>{{ad.date| date : format : timezone}}</th>
-            </thead>
+<div>
+    <div ng-repeat="ad in ads">
+        <table class="adHolder">
             <tr>
-                <td rowspan="2">
-                    <img ng-src="{{ad.imageDataUrl}}" err-src="./images/no-image.png" />
-                    <img ng-if="!ad.imageDataUrl" ng-src="./images/no-image.png" />
-                </td><td colspan="2">{{ad.text}}</td><td></td>
+                <th colspan="3" class="clearfix">
+            <div class="adTitleHolder">{{ad.title}}</div>
+            <div class="adDateHolder">{{ad.date|date:'dd-MMM-yyyy'}}</div>
+            </th>
             </tr>
             <tr>
-                <td>Name:</td><td>{{ad.ownerName}}</td>
+                <td rowspan="4" class="adImageHolder">
+                    <img ng-src="{{ad.imageDataUrl }}" err-src="./images/no-image.png" />
+                    <img ng-if="!ad.imageDataUrl" ng-src="img/no-image.png" />
+                </td>
+                <td colspan="2">
+                    <div class="boxAdContent">
+                        {{ad.text}}
+                    </div>
+                </td>
             </tr>
             <tr>
-                <td></td><td>Em@il:</td><td>{{ad.ownerEmail}}</td>
+                <td>Name:</td>
+                <td>
+                    <div class="boxAdContent">
+                        {{ad.ownerName}}
+                    </div>
+                </td>
             </tr>
             <tr>
-                <td></td><td>Tel:</td><td>{{ad.ownerPhone}}</td>
+                <td>Email:</td>
+                <td>
+                    <div class="boxAdContent">
+                        {{ad.ownerEmail}}
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Tel:</td>
+                <td>
+                    <div class="boxAdContent">
+                        {{ad.ownerPhone}}
+                    </div>
+                </td>
             </tr>
         </table>
     </div>

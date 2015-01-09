@@ -1,64 +1,118 @@
-<html>
+<!DOCTYPE html>
+<html ng-app="onlineAdsApp">
     <head>
-        <title>Ads - SPA with AngularJs</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
+        <meta charset="utf-8">
+        <title>Aleahim's AdsApp</title>
+        <!-- Load Bootsrap and custom styles-->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"><link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
-    </head>
-    <body ng-app="adsApp" ng-controller="AdsAppController">
-        <header><h1>Ads - Home</h1></header>
-        <section class="container">
-            <section class="col-sm-2">
-                <nav id="mainNav" class="boxDefault" ng-controller="UserController">
-                    <span class="boxTitle">Navigation</span>
-                    <ul>
-                        <li><a href="#/">Home</a></li>
-                        <li ng-hide="hideFullMenu"><a href="#/">My Ads</a></li>
-                        <li ng-hide="hideFullMenu"><a href="#/">Publish New Ad</a></li>
-                        <li ng-hide="hideFullMenu"><a href="#/">Edit Profile</a></li>
-                    </ul>
-                </nav>
-                <div class="boxDefault">
-                    To publish a new ad, please login.
-                    <a href="#/login" class="button">Login</a>
-                    <a href="#/register" class="button">Register</a>
-                </div>
-            </section>   
-            <section class="col-sm-8"  ng-view>
-            </section>
-            <section class="col-sm-2">
-                <nav id="categoriesNav" class="boxDefault">
-                    <span class="boxTitle">Categories</span>
-                    <ul>
-                        <li><a href="#/">All</a></li>
-                        <li><a ng-repeat="category in categories" id="{{category.id}}" href="#">{{category.name}}</a></li>
-                    </ul>
-                </nav>
-                <nav id="townsNav" class="boxDefault">
-                    <span class="boxTitle">Towns</span>
-                    <ul>
-                        <li><a href="#/">All</a></li>
-                        <li><a ng-repeat="town in towns" id="{{town.id}}" href="#">{{town.name}}</a></li>
-                    </ul>
-                </nav>
-            </section>
-        </section>
-        <footer>&#169; 2014 by Software University Foundation, No Rights Reserved</footer>
-        <script src="lib/jquery/jquery-2.1.1.js"></script>
-        <script src="lib/jquery/jquery.noty.packaged.min.js"></script>
+        <!-- Load jQuery and BootstrapJS-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <!-- Load lib, modules, services and controllers -->
         <script src="lib/angular/angular.js"></script>
-        <script src="lib/angular/angular-route.js" type="text/javascript"></script>
-        <script src="lib/pagination/dirPagination.js" type="text/javascript"></script>
+        <script src="lib/angular/angular-resource.js"></script>
+        <script src="lib/angular/angular-route.js"></script>
+        <script src="lib/angular/angular-sanitize.js"></script>
+        <script src="lib/angular/dirPagination.js"></script>
         <script src="js/app.js"></script>
-        
         <script src="js/services/adsData.js"></script>
-        <script src="js/services/registerService.js"></script>
-        <script src="js/services/loginService.js"></script>
-        <script src="js/controllers/AdsAppController.js"></script>
+        <script src="js/services/categoriesData.js"></script>
+        <script src="js/services/townsData.js"></script>
+        <script src="js/services/authData.js"></script>
+        <script src="js/services/authService.js"></script>
+        <script src="js/controllers/HomeController.js"></script>
         <script src="js/controllers/RegisterController.js"></script>
         <script src="js/controllers/LoginController.js"></script>
-        <script src="js/controllers/UserController.js"></script>
-        <script src="js/controllers/EditAdController.js"></script>
+    </head>
+    <body ng-controller="MainAppController">
+        <!-- navigation-->
+        <div class="navbar navbar-inverse header-nav">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ng-click="loadHomePage()"><strong class="home-page-button">DMNook</strong></a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#/login" ng-if="!userIsLogged">Login</a>
+                    </li>
+                    <li>
+                        <a ng-if="userIsLogged" ng-click="logout()">Logout</a>
+                    </li>
+                    <li>
+                        <a href="#/register" ng-if="!userIsLogged">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- alerts-->
+        <div class="col-md-6 coll-sm-8 coll-xs-8 col-centered alert-message alerts-div">
+            <alert type="{{alertType}}" close="closeAlert()" id="current-alert" class="text-center alert-message" ng-if="alertDialog">
+                {{alertMsg}}
+            </alert>
+        </div>
+        <!-- main -->
+        <div class="row">
+            <!-- left-side-bar -->
+            <div class="col-md-3 col-sm-3 col-xs-10">
+                <!-- main user nav -->
+                <div class="row sidebar-nav" ng-if="userIsLogged">
+                    <div class="col-md-11 col-sm-12 col-xs-10 col-centered">
+                        <div class="well well-sm text-info sidebar-nav-heading">
+                            <h4>Wellcome home, <span class="avoidwrap"> {{currentUser}}</span></h4>
+                        </div>
+                        <div class="list-group">
+                            <a href="#/home" class="list-group-item" ng-class="getClass('/home')" ng-click="loadHomePage()">Home </a>
+                            <a class="list-group-item" ng-class="getClass('/user/ads')" ng-click="loadUserAds('')">My Ads</a>
+                            <a class="list-group-item" ng-class="getClass('/user/publish-new-add')" ng-click="publishNewAdd()">	Publish New Add</a>
+                            <a class="list-group-item" ng-class="getClass('/user/profile')"
+                               ng-click="editProfile()">Edit Profile</a>
+                            <a class="list-group-item" ng-class="getClass('/user/troubleshoot')"  ng-click="troubleshoot()">Troubleshooting</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- My ads nav -->
+                <div class="row sidebar-nav" ng-if="clickedMyAds">
+                    <div class="col-md-11 col-sm-12 col-xs-10 col-centered">
+                        <div class="well well-sm text-info sidebar-nav-heading">
+                            <h4>My ads</h4>
+                        </div>
+                        <div class="list-group">
+                            <a class="list-group-item" ng-class="getClass('/user/ads')" ng-click="loadUserAds('')">All</a>
+                            <a class="list-group-item" ng-class="getClass('/user/ads/published')" ng-click="loadUserAds('Published')">Published</a>
+                            <a class="list-group-item" ng-class="getClass('/user/ads/waitingapproval')" ng-click="loadUserAds('WaitingApproval')">Waiting Approval</a>
+                            <a class="list-group-item" ng-class="getClass('/user/ads/inactive')" ng-click="loadUserAds('Inactive')">Inactive</a>
+                            <a class="list-group-item" ng-class="getClass('/user/ads/rejected')" ng-click="loadUserAds('Rejected')">Rejected</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- site info -->
+                <div class="row sidebar-nav" ng-if="homePage">
+                    <!-- site logo -->
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-centered ">
+                        <div class="info-page-div">
+                        </div>		
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-centered">
+                        <div class="well well-sm">
+                            <h3 class="text-info text-center">DMNook</h3>
+                            <p class="site-info"><strong> Digital Market Nook</strong> or <strong>DMNook</strong>, or simply <strong>DMN</strong> is the best place on the internet where you could post your ads for free.</p>
+                            <p>You are just a few clicks away from the wonderful opportunity of purchasing or offer for sale anything you like.</p>
+                            <p>You could view all the advertisements without signing up, but registration takes only a few minutes and it will grant you permission to also post your own ads.Enjoy your staying on our website and good luck!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- different views from routes are displayed here -->
+            <div class="col-md-9 col-sm-9 col-xs-11" ng-view >
+            </div>
+        </div>
+        <!-- back to top button -->
+        <a class="back-to-top" ng-click="scollToTop()">Back to Top</a>
     </body>
 </html>

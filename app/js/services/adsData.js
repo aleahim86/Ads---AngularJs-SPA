@@ -1,65 +1,31 @@
-'use strict';
+/* Serrvice for getting аll ads on home page  */
+onlineAdsApp.factory('adsData', function adsData($http, $q, baseUrl, authorizationService) {
+    function adsRequester(method, url, data) {
+        var deferred = $q.defer();
 
-adsApp.factory('adsData', function ($http, $location) {
-    function getCategories(success) {
-        $http.get('http://softuni-ads.azurewebsites.net/api/categories')
-                .success(function (data) {
-                    success(data);
+        var headers = authorizationService.getAuthorizationHeaders();
+        $http({
+            method: method,
+            url: url,
+            data: data,
+            headers: headers
+        })
+                .success(function (data, status, headers, config) {
+                    deferred.resolve(data, status, headers, config);
                 })
-                .error(function () {
-                    showErrorMessage('Can\'t load categories');
+                .error(function (data, status, headers, config) {
+                    deferred.reject(data, status, headers, config);
                 });
-    }
-    function getAllAds(pageNumber, townId, categoryId, success) {
-        $http.get('http://softuni-ads.azurewebsites.net/api/ads?pagesize=5&startpage=' + pageNumber + '&TownId=' + townId + '&CategoryId=' + categoryId)
-                .success(function (data) {
-                    success(data);
-                })
-                .error(function () {
-                    showErrorMessage('Can\'t load ads');
-                });
-    }
-    function getTowns(success) {
-        $http.get('http://softuni-ads.azurewebsites.net/api/towns')
-                .success(function (data) {
-                    success(data);
-                })
-                .error(function () {
-                    showErrorMessage('Can\'t load towns');
-                });
-    } 
-    function showAjaxError(msg, error) {
-        var errMsg = error.responseJSON;
-        if (errMsg && errMsg.error) {
-            showErrorMessage(msg + ": " + errMsg.error);
-        } else {
-            showErrorMessage(msg + ".");
-        }
+
+        return deferred.promise;
     }
 
-    function showInfoMessage(msg) {
-        noty({
-            text: msg,
-            type: 'success',
-            layout: 'topCenter',
-            timeout: 5000}
-        );
-    }
+    var getAllAdds = function (pageNumber, townId, categoryId) {
+        return adsRequester('GET', baseUrl + '/ads?pagesize=5&startpage=' + pageNumber +
+                '&TownId=' + townId + '&CategoryId=' + categoryId, null);
+    };
 
-    function showErrorMessage(msg) {
-        noty({
-            text: msg,
-            type: 'error',
-            layout: 'topCenter',
-            timeout: 5000}
-        );
-    }
     return {
-        getCategories: getCategories,
-        getAllAds: getAllAds,
-        getTowns: getTowns,
-        showAjaxError: showAjaxError,
-        showInfoMessage: showInfoMessage,
-        showErrorMessage: showErrorMessage
+        getAll: getAllAdds
     };
 });

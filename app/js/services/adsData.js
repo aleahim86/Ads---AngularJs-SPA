@@ -1,9 +1,9 @@
 /* Serrvice for getting аll ads on home page  */
-onlineAdsApp.factory('adsData', function adsData($http, $q, baseUrl, authorizationService) {
+onlineAdsApp.factory('adsData', function adsData($http, $q, baseUrl, authData) {
     function adsRequester(method, url, data) {
         var deferred = $q.defer();
 
-        var headers = authorizationService.getAuthorizationHeaders();
+        var headers = authData.getAuthorizationHeaders();
         $http({
             method: method,
             url: url,

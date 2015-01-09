@@ -1,4 +1,4 @@
-onlineAdsApp.factory('authorizationService', function authorizationService($window) {
+onlineAdsApp.factory('authData', function authData($window) {
     var headers = {};
     var userSession;
 
@@ -7,6 +7,7 @@ onlineAdsApp.factory('authorizationService', function authorizationService($wind
             accessToken: data.access_token,
             userName: data.username
         };
+        console.log(userSession);
         
         $window.sessionStorage["currentUser"] = JSON.stringify(userSession);
     }

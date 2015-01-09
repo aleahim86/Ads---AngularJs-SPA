@@ -1,4 +1,5 @@
-var onlineAdsAppControllers = onlineAdsAppControllers || angular.module('onlineAdsAppControllers', []);
+/* Controllers for AdsApp*/
+var onlineAdsAppControllers = angular.module('onlineAdsAppControllers', []);
 /* home controller*/
 onlineAdsAppControllers.controller('HomeController',
         function homeController($scope, $rootScope, adsData, categoriesData, townsData, ajaxErrorText) {

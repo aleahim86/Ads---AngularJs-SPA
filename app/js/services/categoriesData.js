@@ -18,6 +18,6 @@ onlineAdsApp.factory('categoriesData', function categoriesData($http, $q, baseUr
     }
 
     return {
-        getAll: getAllCategories,
+        getAllCategories: getAllCategories
     };
 });

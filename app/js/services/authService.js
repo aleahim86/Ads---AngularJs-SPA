@@ -1,5 +1,5 @@
-onlineAdsApp.factory('authenticationService',
-    function authentication($http, $q, baseUrl, authorizationService) {
+onlineAdsApp.factory('authService',
+    function authentication($http, $q, baseUrl, authData) {
         function authRequest(method, url, data) {
             var deferred = $q.defer();
 

@@ -3,7 +3,6 @@ var onlineAdsApp = angular.module('onlineAdsApp', [
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'ui.bootstrap',
     'angularUtils.directives.dirPagination',
     'onlineAdsAppControllers'
 ]);
@@ -29,10 +28,10 @@ onlineAdsApp.config(['$routeProvider',
         });
     }
 ]).
-run(function($rootScope, $location, authorizationService) {
+run(function($rootScope, $location, authData) {
     $rootScope.$on('$routeChangeStart', function(event, next) {
         var path = $location.path();
-        if (!authorizationService.userIsLogged() && path !== '/login' &&
+        if (!authData.userIsLogged() && path !== '/login' &&
             path !== '/register' && path !== '/home') {
             $location.path('/unauthorized');
         }

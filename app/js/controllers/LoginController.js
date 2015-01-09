@@ -1,14 +1,23 @@
-'use strict';
+var onlineAdsAppControllers = onlineAdsAppControllers || angular.module('onlineAdsAppControllers', []);
+/* login controller*/
+onlineAdsAppControllers.controller('LoginController',
+    function loginController($scope, $rootScope, $location, authService, authData, ajaxErrorText) {
+        $rootScope.$broadcast('userLoginRegister');
 
-adsApp.controller('LoginController', function ($scope, loginService, $location) {
-    $scope.tryingToLogin = function (user) {
-        loginService.login(user, function (resp) {
-            if (resp.access_token != null && resp.access_token != undefined && resp.access_token != '') {
-                localStorage.setItem('token', resp.access_token);
-                localStorage.setItem('username', resp.username);
-                $location.path('user/home');
+        $scope.login = function(userData, loginForm) {
+            if (loginForm.$valid) {
+                authService.login(userData).then(function(data) {
+                    authData.setUserSession(data);
+
+                    $location.path('/home');
+                }, function(error) {
+                    $scope.errorOccurred = true;
+                    if (error.error_description) {
+                        $rootScope.$broadcast('alertMessage', error.error_description);
+                    } else {
+                        $rootScope.$broadcast('alertMessage', ajaxErrorText);
+                    }
+                });
             }
-        });
-    };
-}
-);
+        };
+    });

@@ -34,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ng-click="loadHomePage()"><strong class="home-page-button">DMNook</strong></a>
+                <a class="navbar-brand" ng-click="loadHomePage()"><strong class="home-page-button">Brandd</strong></a>
             </div>
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav">
@@ -67,17 +67,15 @@
                             <h4>Wellcome home, <span class="avoidwrap"> {{currentUser}}</span></h4>
                         </div>
                         <div class="list-group">
-                            <a href="#/home" class="list-group-item" ng-class="getClass('/home')" ng-click="loadHomePage()">Home </a>
-                            <a class="list-group-item" ng-class="getClass('/user/ads')" ng-click="loadUserAds('')">My Ads</a>
-                            <a class="list-group-item" ng-class="getClass('/user/publish-new-add')" ng-click="publishNewAdd()">	Publish New Add</a>
-                            <a class="list-group-item" ng-class="getClass('/user/profile')"
-                               ng-click="editProfile()">Edit Profile</a>
-                            <a class="list-group-item" ng-class="getClass('/user/troubleshoot')"  ng-click="troubleshoot()">Troubleshooting</a>
+                            <a href="#/home" class="list-group-item" ng-class="getClass('/home')">Home </a>
+                            <a class="list-group-item" ng-class="getClass('/user/ads')">My Ads</a>
+                            <a class="list-group-item" ng-class="getClass('/user/publish-new-add')">Publish New Add</a>
+                            <a class="list-group-item" ng-class="getClass('/user/profile')">Edit Profile</a>
                         </div>
                     </div>
                 </div>
                 <!-- My ads nav -->
-                <div class="row sidebar-nav" ng-if="clickedMyAds">
+                <div class="row sidebar-nav">
                     <div class="col-md-11 col-sm-12 col-xs-10 col-centered">
                         <div class="well well-sm text-info sidebar-nav-heading">
                             <h4>My ads</h4>
@@ -91,28 +89,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- site info -->
-                <div class="row sidebar-nav" ng-if="homePage">
-                    <!-- site logo -->
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-centered ">
-                        <div class="info-page-div">
-                        </div>		
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 col-centered">
-                        <div class="well well-sm">
-                            <h3 class="text-info text-center">DMNook</h3>
-                            <p class="site-info"><strong> Digital Market Nook</strong> or <strong>DMNook</strong>, or simply <strong>DMN</strong> is the best place on the internet where you could post your ads for free.</p>
-                            <p>You are just a few clicks away from the wonderful opportunity of purchasing or offer for sale anything you like.</p>
-                            <p>You could view all the advertisements without signing up, but registration takes only a few minutes and it will grant you permission to also post your own ads.Enjoy your staying on our website and good luck!</p>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- different views from routes are displayed here -->
             <div class="col-md-9 col-sm-9 col-xs-11" ng-view >
             </div>
         </div>
-        <!-- back to top button -->
-        <a class="back-to-top" ng-click="scollToTop()">Back to Top</a>
     </body>
 </html>

@@ -26,9 +26,14 @@ onlineAdsApp.factory('userData', function($http, $q, baseUrl, authData) {
     var updateProfileInfo = function(data) {
         return userRequester('PUT', baseUrl + '/user/profile', data);
     };
+    
+    var changePassword = function(data) {
+        return userRequester('PUT', baseUrl + '/user/changePassword', data);
+    };
 
     return {
         getProfile: getProfile,
-        updateProfileInfo: updateProfileInfo
+        updateProfileInfo: updateProfileInfo,
+        changePassword: changePassword
     };
 });

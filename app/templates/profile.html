@@ -73,7 +73,7 @@
 						<div>
 							<label for="oldPassword" class="col-md-8 col-sm-8 col-xs-8 control-label label-on-top edit-profile-label">Old password: <b class="text-danger">*</b></label>
 						</div>
-						<input type="password" name="oldPassword" class="form-control" id="name" placeholder="Old password" ng-model="credentials.oldPassword" required>
+						<input type="password" name="oldPassword" class="form-control" id="name" placeholder="Old password" ng-model="passInfo.oldPassword" required>
 					</div>
 				</div>
 				<!-- new pasword -->
@@ -83,7 +83,7 @@
 							<label for="newPassword" class="col-md-8 col-sm-8 col-xs-8 control-label label-on-top edit-profile-label">New password: <b class="text-danger">*</b>
 							</label>
 						</div>
-						<input type="password" name="newPassword" class="form-control" id="newPassword" placeholder="New password" ng-model="credentials.newPassword" required>
+						<input type="password" name="newPassword" class="form-control" id="newPassword" placeholder="New password" ng-model="passInfo.newPassword" required>
 					</div>
 				</div>
 				<!-- confirm password -->
@@ -93,7 +93,7 @@
 							<label for="confirmPassword" class="col-md-8 col-sm-8 col-xs-8 control-label label-on-top edit-profile-label">Confirm new password:
 							<b class="text-danger">*</b></label>
 						</div>
-						<input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm new password" ng-model="credentials.confirmPassword" required>
+						<input type="password" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm new password" ng-model="passInfo.confirmPassword" required>
 					</div>
 				</div>
 				<!-- note on required fields-->
@@ -106,7 +106,7 @@
 				<div class="form-group row">
 					<div class="centerd-buttons">
 						<a class="btn btn-default" href="#/home">Cancel</a>
-						<button name="update" ng-click="changePassword(credentials, changePasswordForm)" type="submit" class="btn btn-primary">Change</button>
+						<button name="update" ng-click="changePassword(passInfo)" type="submit" class="btn btn-primary">Change</button>
 					</div>
 				</div>
 			</fieldset>

@@ -50,6 +50,10 @@ onlineAdsApp.config(['$routeProvider',
                 .when('/user/profile', {
                     templateUrl: 'templates/profile.html',
                     controller: 'UserProfileController'
+                })
+                .when('/user/edit-ad-info', {
+                    templateUrl: 'templates/edit-ad.html',
+                    controller: 'UserAdManageController'
                 }).
                 otherwise({
                     redirectTo: '/home'

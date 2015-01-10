@@ -43,12 +43,17 @@ onlineAdsApp.factory('adsData', function adsData($http, $q, baseUrl, authData) {
     var publishAd = function(newAdData){
         return adsRequester('POST', baseUrl + '/user/ads', newAdData);
     };
+    
+    var getAdById = function(id){
+        return adsRequester('GET', baseUrl + '/user/ads/' + id, null);
+    };
 
     return {
         getAll: getAllAdds,
         getUserAds: getUserAds,
         getAllAdsByTown: getAllAdsByTown,
         getAllAdsByCategory: getAllAdsByCategory,
-        publishAd: publishAd
+        publishAd: publishAd,
+        getAdById: getAdById
     };
 });

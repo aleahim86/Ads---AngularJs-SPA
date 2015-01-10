@@ -27,6 +27,22 @@ onlineAdsApp.config(['$routeProvider',
                     templateUrl: 'templates/my-ads.html',
                     controller: 'UserAllAdsController'
                 }).
+                when('/user/ads/published', {
+                    templateUrl: 'templates/my-ads.html',
+                    controller: 'UserAllAdsController'
+                }).
+                when('/user/ads/waitingapproval', {
+                    templateUrl: 'templates/my-ads.html',
+                    controller: 'UserAllAdsController'
+                }).
+                when('/user/ads/inactive', {
+                    templateUrl: 'templates/my-ads.html',
+                    controller: 'UserAllAdsController'
+                }).
+                when('/user/ads/rejected', {
+                    templateUrl: 'templates/my-ads.html',
+                    controller: 'UserAllAdsController'
+                }).
                 otherwise({
                     redirectTo: '/home'
                 });

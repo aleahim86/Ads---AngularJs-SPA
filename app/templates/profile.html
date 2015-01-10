@@ -9,7 +9,7 @@
 						<div>
 							<label for="name" class="col-md-3 col-sm-3 col-xs-3 control-label label-on-top edit-profile-label">Name: <b class="text-danger">*</b></label>
 						</div>
-						<input type="text" name="name" class="form-control" id="name" placeholder="Name" ng-model="userData.name" required>
+						<input type="text" name="name" class="form-control" id="name" placeholder="Name" ng-model="userDataForm.name" required>
 					</div>
 				</div>
 				<!-- email -->
@@ -19,7 +19,7 @@
 							<label for="email" class="col-md-3 col-sm-3 col-xs-3 control-label label-on-top edit-profile-label">Email: <b class="text-danger">*</b>
 							</label>
 						</div>
-						<input type="email" name="email" class="form-control" id="email" placeholder="Email" ng-model="userData.email" required>
+						<input type="email" name="email" class="form-control" id="email" placeholder="Email" ng-model="userDataForm.email" required>
 					</div>
 				</div>
 				<!-- phone -->
@@ -29,7 +29,7 @@
 							<label for="phoneNumber" class="col-md-3 col-sm-3 col-xs-3 control-label label-on-top edit-profile-label">Pohone:
 							<b class="text-danger">*</b></label>
 						</div>
-						<input type="text" name="phoneNumber" class="form-control" id="phoneNumber" placeholder="Phone" ng-model="userData.phoneNumber" required>
+						<input type="text" name="phoneNumber" class="form-control" id="phoneNumber" placeholder="Phone" ng-model="userDataForm.phoneNumber" required>
 					</div>
 				</div>
 				<!-- Town -->
@@ -38,7 +38,7 @@
 						<div>
 							<label for="town" class="col-md-3 col-sm-3 col-xs-3 control-label label-on-top edit-profile-label">Town: </label>
 						</div>
-						<select class="form-control" id="town" ng-model="userData.townId">
+						<select class="form-control" id="town" ng-model="userDataForm.townId">
 							<option value="{{nullValue}}">None</option>
 							<option ng-repeat="town in townsData" value="{{town.id}}">{{town.name}}</option>
 						</select>
@@ -54,7 +54,7 @@
 				<div class="form-group row">
 					<div class="centerd-buttons">
 						<a class="btn btn-default" href="#/home">Cancel</a>
-						<button name="update" ng-click="updateProfile(editProfileForm)" type="submit" class="btn btn-primary">Update</button>
+						<button name="update" ng-click="updateProfileInfo(userDataForm)" type="submit" class="btn btn-primary">Update</button>
 					</div>
 				</div>
 			</fieldset>

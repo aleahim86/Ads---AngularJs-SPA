@@ -111,4 +111,13 @@ onlineAdsApp.controller('MainAppController',
                     return "";
                 }
             };
+
+            /* redirect user to publish-new-add page */
+            $scope.publishNewAdd = function () {
+                if (authData.userIsLogged()) {
+                    $scope.userIsLogged = true;
+                    $scope.navigationMyAdsActive = false;
+                    $location.path('/user/publish-new-add');
+                }
+            };
         });

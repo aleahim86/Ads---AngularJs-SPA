@@ -39,11 +39,16 @@ onlineAdsApp.factory('adsData', function adsData($http, $q, baseUrl, authData) {
         return adsRequester('GET', baseUrl + '/ads?pagesize=5&CategoryId=' + categoryId + 
             '&TownId=' + townId + '&startpage=' + pageNumber, null);
     };
+    
+    var publishAd = function(newAdData){
+        return adsRequester('POST', baseUrl + '/user/ads', newAdData);
+    };
 
     return {
         getAll: getAllAdds,
         getUserAds: getUserAds,
         getAllAdsByTown: getAllAdsByTown,
-        getAllAdsByCategory: getAllAdsByCategory
+        getAllAdsByCategory: getAllAdsByCategory,
+        publishAd: publishAd
     };
 });

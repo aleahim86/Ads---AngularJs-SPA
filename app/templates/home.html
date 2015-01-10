@@ -9,7 +9,7 @@
             </tr>
             <tr>
                 <td rowspan="4" class="adImageHolder">
-                    <img ng-src="{{ad.imageDataUrl }}" err-src="./images/no-image.png" />
+                    <img ng-src="{{ad.imageDataUrl}}" err-src="./images/no-image.png" />
                     <img ng-if="!ad.imageDataUrl" ng-src="img/no-image.png" />
                 </td>
                 <td colspan="2">
@@ -49,15 +49,20 @@
     <nav id="categoriesNav" class="boxDefault">
         <span class="boxTitle">Categories</span>
         <ul>
-            <li><a href="#/">All</a></li>
-            <li><a ng-repeat="category in categoriesData" id="{{category.id}}" href="#">{{category.name}}</a></li>
+            <li><a ng-click="filterByCategory('')">All</a></li>
+            <li ng-repeat="category in categoriesData">
+                <a ng-click="filterByCategory( category.id )">
+                    {{category.name}}</a>
+            </li>
         </ul>
     </nav>
     <nav id="townsNav" class="boxDefault">
         <span class="boxTitle">Towns</span>
         <ul>
-            <li><a href="#/">All</a></li>
-            <li><a ng-repeat="town in townsData" id="{{town.id}}" href="#">{{town.name}}</a></li>
+            <li><a ng-click="filterByTown('')">All</a></li>
+            <li ng-repeat="town in townsData">
+                <a ng-click="filterByTown( town.id )">{{town.name}}</a>
+            </li>
         </ul>
     </nav>
 </div>

@@ -29,9 +29,21 @@ onlineAdsApp.factory('adsData', function adsData($http, $q, baseUrl, authData) {
         return adsRequester('GET', baseUrl + '/user/ads?pagesize=3&startpage=' +
                 pageNumber + '&status=' + adsWithStatus, null);
     };
+    
+    var getAllAdsByTown = function(townId, categoryId, pageNumber){
+        return adsRequester('GET',  baseUrl + '/ads?pagesize=5&TownId=' + townId + 
+            '&CategoryId=' + categoryId + '&startpage=' + pageNumber, null);
+    };
+    
+    var getAllAdsByCategory = function(categoryId, townId, pageNumber){
+        return adsRequester('GET', baseUrl + '/ads?pagesize=5&CategoryId=' + categoryId + 
+            '&TownId=' + townId + '&startpage=' + pageNumber, null);
+    };
 
     return {
         getAll: getAllAdds,
-        getUserAds: getUserAds
+        getUserAds: getUserAds,
+        getAllAdsByTown: getAllAdsByTown,
+        getAllAdsByCategory: getAllAdsByCategory
     };
 });

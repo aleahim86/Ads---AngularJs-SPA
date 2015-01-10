@@ -3,7 +3,7 @@ var onlineAdsAppControllers = angular.module('onlineAdsAppControllers', []);
 /* home controller*/
 onlineAdsAppControllers.controller('HomeController',
         function homeController($scope, $rootScope, adsData, categoriesData, townsData, ajaxErrorText) {
-            /* get selected town/category id for further filtering */
+            /* town/category id for further filtering */
             var currentCategoryId = '',
                     currentTownId = '',
                     currentPage = 1;
@@ -45,4 +45,43 @@ onlineAdsAppControllers.controller('HomeController',
             }, function (error) {
                 $rootScope.$broadcast('alertMessage', ajaxErrorText);
             });
+
+
+            /* filtering ads by chosen category */
+            $scope.filterByCategory = function (categoryId) {
+                adsData.getAllAdsByCategory(categoryId, currentTownId, currentPage).then(function (data) {
+                    $scope.noAdsToDisplay = false;
+                    $scope.loading = true;
+                    $scope.adsData = data;
+
+                    if (data.ads.length === 0) {
+                        $scope.noAdsToDisplay = true;
+                    }
+
+                    $scope.totalAds = parseInt(data.numPages) * 5;
+                    currentCategoryId = categoryId;
+                }, function (error) {
+                    $rootScope.$broadcast('alertMessage', ajaxErrorText);
+                });
+            };
+
+            /* filtering ads by chosen town*/
+            $scope.filterByTown = function (townId) {
+                adsData.getAllAdsByTown(townId, currentCategoryId, currentPage).then(function (data) {
+                    $scope.noAdsToDisplay = false;
+                    $scope.loading = true;
+                    $scope.adsData = data;
+
+                    if (data.ads.length === 0) {
+                        $scope.noAdsToDisplay = true;
+                    }
+
+                    $scope.totalAds = parseInt(data.numPages) * 5;
+                    currentTownId = townId;
+                }, function (error) {
+                    $rootScope.$broadcast('alertMessage', ajaxErrorText);
+                }).finally(function () {
+                    $scope.loading = false;
+                });
+            };
         });

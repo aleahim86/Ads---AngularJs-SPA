@@ -82,8 +82,8 @@ onlineAdsAppControllers.controller('UserAdManageController',
                 });
             };
 
+            /* cancel ad edit */
             $scope.cancel = function () {
                 $route.reload();
             };
-
         });

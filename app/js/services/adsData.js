@@ -51,7 +51,19 @@ onlineAdsApp.factory('adsData', function adsData($http, $q, baseUrl, authData) {
     var editAd = function(id, editAdData){
         return adsRequester('PUT', baseUrl + '/user/ads/' + id, editAdData);
     };
+    
+    var publishAgainAd = function(id){
+        return adsRequester('PUT', baseUrl + '/user/ads/publishagain/' + id, null);
+    };
+    
+    var deactivateAd = function(id){
+        return adsRequester('PUT', baseUrl + '/user/ads/deactivate/' + id, null);
+    };
 
+    var deleteAd = function(id){
+        return adsRequester('DELETE', baseUrl + '/user/ads/' + id, null);
+    };
+    
     return {
         getAll: getAllAdds,
         getUserAds: getUserAds,
@@ -59,6 +71,9 @@ onlineAdsApp.factory('adsData', function adsData($http, $q, baseUrl, authData) {
         getAllAdsByCategory: getAllAdsByCategory,
         publishAd: publishAd,
         getAdById: getAdById,
-        editAd: editAd
+        editAd: editAd,
+        publishAgainAd: publishAgainAd,
+        deactivateAd: deactivateAd,
+        deleteAd: deleteAd
     };
 });

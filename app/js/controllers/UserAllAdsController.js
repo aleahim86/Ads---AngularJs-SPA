@@ -1,7 +1,7 @@
 var onlineAdsAppControllers = onlineAdsAppControllers || angular.module('onlineAdsAppControllers', []);
 
 onlineAdsAppControllers.controller('UserAllAdsController',
-        function userAllAdsController($scope, $rootScope, $location, adsData, ajaxErrorText) {
+        function userAllAdsController($scope, $rootScope, $route, $location, adsData, ajaxErrorText) {
             $scope.loading = true;
             $scope.noAdsToDisplay = false;
 
@@ -43,5 +43,27 @@ onlineAdsAppControllers.controller('UserAllAdsController',
                 console.log(id);
                 adsData.adIdToBeEdited = id;
                 $location.path('/user/edit-ad-info');
+            };
+            
+            /* publish again ad*/
+            $scope.publishAgainAd = function (id) {
+                adsData.publishAgainAd(id).then(function (data) {
+                    $route.reload();
+                    $rootScope.$broadcast('alertMessage', data.message +
+                            "It was moved into your Waiting Approval Ads.");
+                }, function (error) {
+                    $rootScope.$broadcast('alertMessage', ajaxErrorText);
+                });
+            };
+
+            /* deactivate ad*/
+            $scope.deactivateAd = function (id) {
+                adsData.deactivateAd(id).then(function (data) {
+                    $route.reload();
+                    $rootScope.$broadcast('alertMessage', data.message +
+                            "It was moved into your Inactive Ads.");
+                }, function (error) {
+                    $rootScope.$broadcast('alertMessage', ajaxErrorText);
+                });
             };
         });

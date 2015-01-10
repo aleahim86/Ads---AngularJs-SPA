@@ -52,19 +52,19 @@
 								<div class="ad-edit-buttons"
 									ng-if="ad.status === 'WaitingApproval' ||
 									ad.status === 'Published'">
-									<a class="btn btn-info ad-edit-buttons-link" data="{{ad.id}}" ng-click="openModal(ad.id, 'Deactivate')">Deactivate</a>
+									<a class="btn btn-info ad-edit-buttons-link" ng-click="deactivateAd(ad.id)">Deactivate</a>
 								</div>
 								<div class="ad-edit-buttons" ng-if="ad.status === 'Inactive' ||
 								 ad.status === 'Rejected' ">
-									<a class="btn btn-info ad-edit-buttons-link" data="{{ad.id}}" ng-click="openEditAdMod(ad.id)">Edit</a>
+									<a class="btn btn-info ad-edit-buttons-link" ng-click="openEditAdMod(ad.id)">Edit</a>
 								</div>
 								<div class="ad-edit-buttons" ng-if="ad.status === 'Inactive' || 
 								ad.status === 'Rejected'">
-									<a class="btn btn-info ad-edit-buttons-link" data="{{ad.id}}" ng-click="openModal(ad.id, 'Publish again')">Publish <span class="avoidwrap">again</span></a>
+									<a class="btn btn-info ad-edit-buttons-link" ng-click="publishAgainAd(ad.id)">Publish <span class="avoidwrap">again</span></a>
 								</div>
 								<div class="ad-edit-buttons" ng-if="ad.status === 'Inactive' ||
 									ad.status === 'Rejected'">
-									<a class="btn btn-info ad-edit-buttons-link" data="{{ad.id}}" ng-click="openModal(ad.id, 'Delete')">Delete</a>
+									<a class="btn btn-info ad-edit-buttons-link" ng-click="openDeleteAdConfirmPanel(ad.id)">Delete</a>
 								</div>
 							</div>
 						</div>

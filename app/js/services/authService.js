@@ -25,9 +25,32 @@ onlineAdsApp.factory('authService',
          var register = function(regData){
             return authRequest('POST',baseUrl + '/user/register', regData);
         };
+        
+        function logout() {
+            var deferred = $q.defer(),
+                headers = authData.getAuthorizationHeaders();
+
+            $http({
+                method: 'POST',
+                url: baseUrl + '/user/logout',
+                data: {},
+                headers: headers
+            })
+                .success(function(data, status, headers, config) {
+                    authData.deleteAuthorizationHeaders();
+                    delete sessionStorage['currentUser'];
+                    deferred.resolve(data, status, headers, config);
+                })
+                .error(function(data, status, headers, config) {
+                    deferred.reject(data, status, headers, config);
+                });
+
+            return deferred.promise;
+        }
 
         return {
             login: login,
-            register: register
+            register: register,
+            logout: logout
         };
     });

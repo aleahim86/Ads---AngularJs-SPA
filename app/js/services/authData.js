@@ -7,7 +7,6 @@ onlineAdsApp.factory('authData', function authData($window) {
             accessToken: data.access_token,
             userName: data.username
         };
-        console.log(userSession);
         
         $window.sessionStorage["currentUser"] = JSON.stringify(userSession);
     }

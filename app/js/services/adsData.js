@@ -47,6 +47,10 @@ onlineAdsApp.factory('adsData', function adsData($http, $q, baseUrl, authData) {
     var getAdById = function(id){
         return adsRequester('GET', baseUrl + '/user/ads/' + id, null);
     };
+    
+    var editAd = function(id, editAdData){
+        return adsRequester('PUT', baseUrl + '/user/ads/' + id, editAdData);
+    };
 
     return {
         getAll: getAllAdds,
@@ -54,6 +58,7 @@ onlineAdsApp.factory('adsData', function adsData($http, $q, baseUrl, authData) {
         getAllAdsByTown: getAllAdsByTown,
         getAllAdsByCategory: getAllAdsByCategory,
         publishAd: publishAd,
-        getAdById: getAdById
+        getAdById: getAdById,
+        editAd: editAd
     };
 });

@@ -25,6 +25,7 @@
         <script src="js/controllers/MainAppController.js"></script>
         <script src="js/controllers/RegisterController.js"></script>
         <script src="js/controllers/LoginController.js"></script>
+        <script src="js/controllers/UserAllAdsController.js"></script>
     </head>
     <body ng-controller="MainAppController">
         <!-- navigation-->
@@ -66,8 +67,8 @@
                     <nav id="mainNav" class="boxDefault"  ng-if="userIsLogged">
                         <span class="boxTitle">Navigation</span>
                         <ul>
-                            <li><a href="#/"  ng-click="loadHomePage()">Home</a></li>
-                            <li><a href="#/">My Ads</a></li>
+                            <li><a ng-class="getClass('/home')" ng-click="loadHomePage()">Home</a></li>
+                            <li><a ng-class="getClass('/user/ads')"  ng-click="loadUserAds('')">My Ads</a></li>
                             <li><a href="#/">Publish New Ad</a></li>
                             <li><a href="#/">Edit Profile</a></li>
                         </ul>
@@ -77,11 +78,11 @@
                         <span class="boxTitle">Navigation</span>
                         <ul>
                             <li><a href="#/">My ads</a></li>
-                            <li><a href="#/">All</a></li>
-                            <li><a href="#/">Published</a></li>
-                            <li><a href="#/">Waiting Approval</a></li>
-                            <li><a href="#/">Inactive</a></li>
-                            <li><a href="#/">Rejected</a></li>
+                            <li><a ng-class="getClass('/user/ads')" ng-click="loadUserAds('')">All</a></li>
+                            <li><a ng-class="getClass('/user/ads/published')" ng-click="loadUserAds('Published')">Published</a></li>
+                            <li><a ng-class="getClass('/user/ads/waitingapproval')" ng-click="loadUserAds('WaitingApproval')">Waiting Approval</a></li>
+                            <li><a ng-class="getClass('/user/ads/inactive')" ng-click="loadUserAds('Inactive')">Inactive</a></li>
+                            <li><a ng-class="getClass('/user/ads/rejected')" ng-click="loadUserAds('Rejected')">Rejected</a></li>
                         </ul>
                     </nav>
                 </div>

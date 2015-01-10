@@ -25,7 +25,13 @@ onlineAdsApp.factory('adsData', function adsData($http, $q, baseUrl, authData) {
                 '&TownId=' + townId + '&CategoryId=' + categoryId, null);
     };
 
+    var getUserAds = function (pageNumber, adsWithStatus) {
+        return adsRequester('GET', baseUrl + '/user/ads?pagesize=3&startpage=' +
+                pageNumber + '&status=' + adsWithStatus, null);
+    };
+
     return {
-        getAll: getAllAdds
+        getAll: getAllAdds,
+        getUserAds: getUserAds
     };
 });

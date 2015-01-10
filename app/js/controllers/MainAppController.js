@@ -88,6 +88,21 @@ onlineAdsApp.controller('MainAppController',
                 $scope.navigationMyAdsActive = false;
             };
 
+            /* redirect user to route with requested ads-status from myAds-nav 
+             ads are loaded in the UserAllAdsController */
+            $scope.loadUserAds = function (adsWithStatus) {
+                if (authData.userIsLogged()) {
+                    $scope.userIsLogged = true;
+                    $scope.navigationMyAdsActive = true;
+
+                    if (adsWithStatus === '') {
+                        $location.path('/user/ads');
+                    } else {
+                        $location.path('/user/ads/' + adsWithStatus.toLowerCase());
+                    }
+                }
+            };
+
             /* activate clicked links on page refresh*/
             $scope.getClass = function (path) {
                 if ($location.path() === path) {

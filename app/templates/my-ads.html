@@ -1,0 +1,83 @@
+<!--user ads list -->
+<div class="row">
+	<div class="col-md-10 col-sm-11 col-xs-11" ng-if="noAdsToDisplay">
+		<h4 class="black-text">Ooops.No ads in here.</h4>
+	</div>
+	<div class="col-md-10 col-sm-11 col-xs-11">
+		<ul class="all-ads-list">
+			<li dir-paginate="ad in userAdsData.ads | itemsPerPage: adsPerPage" total-items="totalAds"  class="well" id="{{ad.id}}">
+				<div class="row">
+					<!--left-side-ad -->
+					<div class="col-md-9 col-sm-9 col-xs-10 left-side-ad">
+						<!--header -->
+						<div class="row">
+							<div class="col-md-8 col-sm-8 col-xs-12">
+								<h3 class="ad-title">{{ad.title}}</h3>
+							</div>
+							<div class="col-md-4 col-sm-4 col-xs-12 pull-right">
+								<span class="text-info pull-right"> {{ad.date | date:"EEE dd-MMM-yyyy"}} </span>
+							</div>
+						</div>
+						<!-- info -->
+						<div class="row">
+							<div class="col-md-4 col-sm-4 col-xs-8 ad-image-container">
+								<img src="./img/No_image_available.svg" ng-src="{{ad.imageDataUrl}}" alt="" class="ad-image img-responsive">
+							</div>
+							<div class="col-md-8 col-sm-8 col-xs-12">
+								<p class="well well-sm ad-info-paragraph"> {{ad.text}} </p>
+								<div class="row">
+									<div class="col-md-3 col-sm-5 col-xs-6 ad-info-text"> <strong>Category:</strong> </div>
+									<div class="col-md-8 col-sm-7 col-xs-6 well well-sm">
+										{{ad.categoryName ? ad.categoryName : 'Not available'}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3 col-sm-4 col-xs-6 ad-info-text"><strong>Town:
+									</strong> </div>
+									<div class="col-md-8 col-sm-8 col-xs-6 well well-sm">
+										{{ad.townName ? ad.townName : 'Not available'}}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--right-side-ad -->
+					<div class="col-md-3 col-sm-3 col-xs-8">
+						<div class="row right-side-ad">
+							<div class="col-md-12 col-sm-12	 col-xs-12">
+								<div class="text-center col-centered">
+									<strong>Status:</strong>
+								</div>
+								<div class="well well-sm text-center col-centered ad-edit-buttons">{{ad.status}} </div>
+								<div class="ad-edit-buttons"
+									ng-if="ad.status === 'WaitingApproval' ||
+									ad.status === 'Published'">
+									<a class="btn btn-info ad-edit-buttons-link" data="{{ad.id}}" ng-click="openModal(ad.id, 'Deactivate')">Deactivate</a>
+								</div>
+								<div class="ad-edit-buttons" ng-if="ad.status === 'Inactive' ||
+								 ad.status === 'Rejected' ">
+									<a class="btn btn-info ad-edit-buttons-link" data="{{ad.id}}" ng-click="openEditModal(ad.id)">Edit</a>
+								</div>
+								<div class="ad-edit-buttons" ng-if="ad.status === 'Inactive' || 
+								ad.status === 'Rejected'">
+									<a class="btn btn-info ad-edit-buttons-link" data="{{ad.id}}" ng-click="openModal(ad.id, 'Publish again')">Publish <span class="avoidwrap">again</span></a>
+								</div>
+								<div class="ad-edit-buttons" ng-if="ad.status === 'Inactive' ||
+									ad.status === 'Rejected'">
+									<a class="btn btn-info ad-edit-buttons-link" data="{{ad.id}}" ng-click="openModal(ad.id, 'Delete')">Delete</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+</div>
+<!--paginaton-->
+<div class="row pagination-div">
+<div class='col-md-10 col-sm-10 col-xs-11 pull-right'>
+	<dir-pagination-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)" template-url="templates/dirPagination.tpl.html"></dir-pagination-controls>
+</div>
+</div>

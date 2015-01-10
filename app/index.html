@@ -21,12 +21,14 @@
         <script src="js/services/townsData.js"></script>
         <script src="js/services/authData.js"></script>
         <script src="js/services/authService.js"></script>
+        <script src="js/services/userData.js"></script>
         <script src="js/controllers/HomeController.js"></script>
         <script src="js/controllers/MainAppController.js"></script>
         <script src="js/controllers/RegisterController.js"></script>
         <script src="js/controllers/LoginController.js"></script>
         <script src="js/controllers/UserAllAdsController.js"></script>
         <script src="js/controllers/UserPiblishAdController.js"></script>
+        <script src="js/controllers/UserProfileController.js"></script>
     </head>
     <body ng-controller="MainAppController">
         <!-- navigation-->
@@ -71,7 +73,7 @@
                             <li><a ng-class="getClass('/home')" ng-click="loadHomePage()">Home</a></li>
                             <li><a ng-class="getClass('/user/ads')"  ng-click="loadUserAds('')">My Ads</a></li>
                             <li><a ng-class="getClass('/user/publish-new-add')" ng-click="publishNewAdd()">Publish New Ad</a></li>
-                            <li><a href="#/">Edit Profile</a></li>
+                            <li><a  ng-class="getClass('/user/profile')" ng-click="editProfile()">Edit Profile</a></li>
                         </ul>
                     </nav>
                     <!-- My ads navigation -->

@@ -120,4 +120,13 @@ onlineAdsApp.controller('MainAppController',
                     $location.path('/user/publish-new-add');
                 }
             };
+
+            /* redirect user to edit-profile page */
+            $scope.editProfile = function () {
+                if (authData.userIsLogged()) {
+                    $scope.userIsLogged = true;
+                    $scope.navigationMyAdsActive = false;
+                    $location.path('/user/profile');
+                }
+            };
         });

@@ -55,6 +55,13 @@ onlineAdsApp.config(['$routeProvider',
                     templateUrl: 'templates/edit-ad.html',
                     controller: 'UserAdManageController'
                 }).
+                when('/user/confirm-del-ad', {
+                    templateUrl: 'templates/confirm-del.html',
+                    controller: 'UserAdManageController'
+                }).
+                when('/unauthorized', {
+                    templateUrl: 'templates/unauthorized.html'
+                }).
                 otherwise({
                     redirectTo: '/home'
                 });

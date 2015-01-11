@@ -40,11 +40,11 @@ onlineAdsAppControllers.controller('UserAllAdsController',
 
             /* redirect user to edit-ad page */
             $scope.openEditAdMod = function (id) {
-                console.log(id);
+                adsData.actionChosen = "edit-ad";
                 adsData.adIdToBeEdited = id;
                 $location.path('/user/edit-ad-info');
             };
-            
+
             /* publish again ad*/
             $scope.publishAgainAd = function (id) {
                 adsData.publishAgainAd(id).then(function (data) {
@@ -65,5 +65,12 @@ onlineAdsAppControllers.controller('UserAllAdsController',
                 }, function (error) {
                     $rootScope.$broadcast('alertMessage', ajaxErrorText);
                 });
+            };
+
+            /* redirect user to confirm-del page */
+            $scope.openDeleteAdConfirmPanel = function (id) {
+                adsData.actionChosen = "del-ad";
+                adsData.adIdToBeDeleted = id;
+                $location.path('/user/confirm-del-ad');
             };
         });

@@ -1,10 +1,15 @@
 var onlineAdsAppControllers = onlineAdsAppControllers || angular.module('onlineAdsAppControllers', []);
 
 onlineAdsAppControllers.controller('UserAdManageController',
-        function userProfileController($scope, $rootScope, $route, adsData, categoriesData, townsData, ajaxErrorText) {
-            console.log(adsData.adIdToBeEdited);
+        function userProfileController($scope, $rootScope, $route, $location,adsData, categoriesData, townsData, ajaxErrorText) {
+            var adId;
+            if(adsData.actionChosen === "edit-ad"){
+                adId = adsData.adIdToBeEdited;
+            }else if(adsData.actionChosen === "del-ad"){
+                adId = adsData.adIdToBeDeleted;
+            }
             /* get selected ad */
-            adsData.getAdById(adsData.adIdToBeEdited).then(function (data) {
+            adsData.getAdById(adId).then(function (data) {
                 $scope.currentAd = data;
                 $scope.editAdInfo = {
                     title: data.title,
@@ -78,6 +83,17 @@ onlineAdsAppControllers.controller('UserAdManageController',
                             "Don't forget to submit it for publishing.");
                 }, function (error) {
                     $route.reload();
+                    $rootScope.$broadcast('alertMessage', ajaxErrorText);
+                });
+            };
+            
+            /* deactivate ad*/
+            $scope.deleteAdConfirmed = function (adId) {
+                console.log(adId);
+                adsData.deleteAd(adId).then(function (data) {
+                    $rootScope.$broadcast('alertMessage', data.message);
+                    $location.path('/user/ads');
+                }, function (error) {
                     $rootScope.$broadcast('alertMessage', ajaxErrorText);
                 });
             };

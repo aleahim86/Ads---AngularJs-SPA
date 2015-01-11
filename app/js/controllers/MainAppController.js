@@ -32,6 +32,7 @@ onlineAdsApp.controller('MainAppController',
             function init() {
                 var currentUrl;
                 $scope.loading = true;
+                
                 if (authData.userIsLogged()) {
                     $scope.userIsLogged = true;
                     $scope.homePage = false;

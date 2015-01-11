@@ -3,6 +3,9 @@ var onlineAdsAppControllers = angular.module('onlineAdsAppControllers', []);
 /* home controller*/
 onlineAdsAppControllers.controller('HomeController',
         function homeController($scope, $rootScope, adsData, categoriesData, townsData, ajaxErrorText) {
+            $scope.loading = true;
+            $scope.noAdsToDisplay = false;
+
             /* town/category id for further filtering */
             var currentCategoryId = '',
                     currentTownId = '',
@@ -28,6 +31,8 @@ onlineAdsAppControllers.controller('HomeController',
                     $scope.totalAds = parseInt(data.numPages) * 5;
                 }, function (error) {
                     $rootScope.$broadcast('alertMessage', ajaxErrorText);
+                }).finally(function () {
+                    $scope.loading = false;
                 });
             }
 
@@ -62,6 +67,8 @@ onlineAdsAppControllers.controller('HomeController',
                     currentCategoryId = categoryId;
                 }, function (error) {
                     $rootScope.$broadcast('alertMessage', ajaxErrorText);
+                }).finally(function () {
+                    $scope.loading = false;
                 });
             };
 

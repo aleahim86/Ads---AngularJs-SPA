@@ -1,73 +1,81 @@
-<div class="col-sm-10">
-    <div dir-paginate="ad in adsData.ads | filter: query | itemsPerPage: adsPerPage" total-items="totalAds" >
-        <table class="adHolder">
-            <tr>
-                <th colspan="3" class="clearfix">
-            <div class="adTitleHolder">{{ad.title}}</div>
-            <div class="adDateHolder">{{ad.date|date:'dd-MMM-yyyy'}}</div>
-            </th>
-            </tr>
-            <tr>
-                <td rowspan="4" class="adImageHolder">
-                    <img ng-src="{{ad.imageDataUrl}}" err-src="./images/no-image.png" />
-                    <img ng-if="!ad.imageDataUrl" ng-src="img/no-image.png" />
-                </td>
-                <td colspan="2">
-                    <div class="boxAdContent">
-                        {{ad.text}}
+<!--All ads list-->
+<div class="row">
+    <div class="col-md-8 col-sm-8 col-xs-10">
+        <!-- no ads to display-->
+        <div class="col-centered" ng-if="noAdsToDisplay">
+            <h4 class="black-text text-center">No ads were founnd.</h4>
+        </div>
+        <!-- loading ads gif-->
+        <div class="row" ng-if="loading">
+            <div class="spinner" >
+                <img src="./img/loading.gif" alt="" class="spinner-gif">
+            </div>
+        </div>
+        <ul class="all-ads-list">
+            <li dir-paginate="ad in adsData.ads | filter: query | itemsPerPage: adsPerPage" total-items="totalAds"  class="well" data-id="{{ad.id}}">
+                <!--header -->
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <h3 class="ad-title">{{ad.title}}</h3>
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Name:</td>
-                <td>
-                    <div class="boxAdContent">
-                        {{ad.ownerName}}
+                    <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
+                        <span class="text-info pull-right"> {{ad.date| date:"EEE dd-MMM-yyyy"}} </span>
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td>
-                    <div class="boxAdContent">
-                        {{ad.ownerEmail}}
+                </div>
+                <!-- info -->
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-8 ad-image-container">
+                        <img src="./img/no-image.png" ng-src="{{ad.imageDataUrl}}" alt="" class="ad-image img-responsive">
                     </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Tel:</td>
-                <td>
-                    <div class="boxAdContent">
-                        {{ad.ownerPhone}}
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <p class="well well-sm ad-info-paragraph"> {{ad.text}} </p>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4 col-xs-3  ad-info-text"> <strong>Name: </strong> </div>
+                            <div class="col-md-8 col-sm-7 col-xs-8 well well-sm">{{ad.ownerName}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4 col-xs-3 ad-info-text"> <strong>Email: </strong>  </div>
+                            <div class="col-md-8 col-sm-7 col-xs-8 well well-sm ad-info-paragraph">
+                                <a href="mailto:{{ad.ownerEmail}}">{{ad.ownerEmail}}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-4 col-xs-3 ad-info-text ad-info-paragraph"> <strong>Tel: </strong></div>
+                            <div class="col-md-8 col-sm-7 col-xs-8 well well-sm ad-info-paragraph">{{ad.ownerPhone}} </div>
+                        </div>
                     </div>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--Filters by category and town-->
+    <div class="col-md-3 col-sm-3 col-xs-10 filter-menues">
+        <nav id="categoriesNav" class="boxDefault">
+            <span class="boxTitle">Categories</span>
+            <ul>
+                <li><a href="" ng-click="filterByCategory('')">All</a></li>
+                <li ng-repeat="category in categoriesData">
+                    <a href="" ng-click="filterByCategory(category.id)">
+                        {{category.name}}</a>
+                </li>
+            </ul>
+        </nav>
+        <nav id="townsNav" class="boxDefault">
+            <span class="boxTitle">Towns</span>
+            <ul>
+                <li><a href="" ng-click="filterByTown('')">All</a></li>
+                <li ng-repeat="town in townsData">
+                    <a href="" ng-click="filterByTown(town.id)">{{town.name}}</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
-<div class="col-sm-2">
-    <nav id="categoriesNav" class="boxDefault">
-        <span class="boxTitle">Categories</span>
-        <ul>
-            <li><a ng-click="filterByCategory('')">All</a></li>
-            <li ng-repeat="category in categoriesData">
-                <a ng-click="filterByCategory( category.id )">
-                    {{category.name}}</a>
-            </li>
-        </ul>
-    </nav>
-    <nav id="townsNav" class="boxDefault">
-        <span class="boxTitle">Towns</span>
-        <ul>
-            <li><a ng-click="filterByTown('')">All</a></li>
-            <li ng-repeat="town in townsData">
-                <a ng-click="filterByTown( town.id )">{{town.name}}</a>
-            </li>
-        </ul>
-    </nav>
-</div>
-<div id="paginationHolder">
-    <dir-pagination-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)" template-url="templates/dirPagination.tpl.html"></dir-pagination-controls>
+<!--paginaton-->
+<div class="row pagination-div">
+    <div class='col-md-9 col-sm-10 col-xs-12 col-centered'>
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChanged(newPageNumber)" template-url="templates/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
 </div>
 
 

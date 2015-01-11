@@ -5,6 +5,7 @@
         <title>Aleahim's AdsApp</title>
         <!-- Load Bootsrap and custom styles-->
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-theme.min.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
         <!-- Load jQuery and BootstrapJS-->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -33,7 +34,7 @@
     </head>
     <body ng-controller="MainAppController">
         <!-- navigation-->
-        <div class="navbar navbar-inverse header-nav">
+        <nav id="mainSiteNav" class="navbar navbar-default">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                     <span class="icon-bar"></span>
@@ -45,54 +46,60 @@
             <div class="navbar-collapse collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <a ng-if="userIsLogged"> Welcome home, {{currentUser}}</a>
+                    </li>
+                    <li>
                         <a href="#/login" ng-if="!userIsLogged">Login</a>
                     </li>
                     <li>
-                        <a ng-if="userIsLogged" ng-click="logout()">Logout</a>
+                        <a href="" ng-if="userIsLogged" ng-click="logout()">Logout</a>
                     </li>
                     <li>
                         <a href="#/register" ng-if="!userIsLogged">Register</a>
                     </li>
                 </ul>
             </div>
-        </div>
-        <!-- alerts-->
-        <div class="col-md-6 coll-sm-8 coll-xs-8 col-centered alert-message alerts-div">
-            <alert type="{{alertType}}" close="closeAlert()" id="current-alert" class="text-center alert-message" ng-if="alertDialog">
-                {{alertMsg}}
-            </alert>
-        </div>
-        <!-- main -->
+        </nav>
+        <!-- main content-->
         <div class="container-fluid">
             <div class="row">
-                <!-- left-side-bar -->
+                <!-- alerts-->
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 alert-message alerts-div">
+                    <alert type="{{alertType}}" close="closeAlert()" id="current-alert" class="text-center alert-message" ng-if="alertDialog">
+                        {{alertMsg}}
+                    </alert>
+                </div>
+                <div class="col-md-3 col-sm-2 col-xs-2">
+                </div>
                 <div class="col-md-3 col-sm-3 col-xs-10">
                     <!-- main user nav -->
-                    <nav id="mainNav" class="boxDefault"  ng-if="userIsLogged">
-                        <span class="boxTitle">Navigation</span>
-                        <ul>
-                            <li><a ng-class="getClass('/home')" ng-click="loadHomePage()">Home</a></li>
-                            <li><a ng-class="getClass('/user/ads')"  ng-click="loadUserAds('')">My Ads</a></li>
-                            <li><a ng-class="getClass('/user/publish-new-add')" ng-click="publishNewAdd()">Publish New Ad</a></li>
-                            <li><a  ng-class="getClass('/user/profile')" ng-click="editProfile()">Edit Profile</a></li>
-                        </ul>
-                    </nav>
-                    <!-- My ads navigation -->
-                    <nav id="mainNav" class="boxDefault" ng-if="navigationMyAdsActive">
-                        <span class="boxTitle">My ads</span>
-                        <ul>
-                            <li><a ng-class="getClass('/user/ads')" ng-click="loadUserAds('')">All</a></li>
-                            <li><a ng-class="getClass('/user/ads/published')" ng-click="loadUserAds('Published')">Published</a></li>
-                            <li><a ng-class="getClass('/user/ads/waitingapproval')" ng-click="loadUserAds('WaitingApproval')">Waiting Approval</a></li>
-                            <li><a ng-class="getClass('/user/ads/inactive')" ng-click="loadUserAds('Inactive')">Inactive</a></li>
-                            <li><a ng-class="getClass('/user/ads/rejected')" ng-click="loadUserAds('Rejected')">Rejected</a></li>
-                        </ul>
-                    </nav>
+                    <!-- main user nav -->
+                    <div class="row sidebar-nav" ng-if="userIsLogged">
+                        <div class="col-md-11 col-sm-12 col-xs-10 col-centered boxDefault">
+                            <span class="boxTitle">Navigation</span>
+                            <ul>
+                                <li><a href="" ng-class="getClass('/home')" ng-click="loadHomePage()">Home</a></li>
+                                <li><a href="" ng-class="getClass('/user/ads')"  ng-click="loadUserAds('')">My Ads</a></li>
+                                <li><a href="" ng-class="getClass('/user/publish-new-add')" ng-click="publishNewAdd()">Publish New Ad</a></li>
+                                <li><a href="" ng-class="getClass('/user/profile')" ng-click="editProfile()">Edit Profile</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- My ads nav -->
+                    <div class="row sidebar-nav" ng-if="navigationMyAdsActive">
+                        <div class="col-md-11 col-sm-12 col-xs-10 col-centered boxDefault">
+                            <span class="boxTitle">My ads</span>
+                            <ul>
+                                <li><a href="" ng-class="getClass('/user/ads')" ng-click="loadUserAds('')">All</a></li>
+                                <li><a href="" ng-class="getClass('/user/ads/published')" ng-click="loadUserAds('Published')">Published</a></li>
+                                <li><a href="" ng-class="getClass('/user/ads/waitingapproval')" ng-click="loadUserAds('WaitingApproval')">Waiting Approval</a></li>
+                                <li><a href="" ng-class="getClass('/user/ads/inactive')" ng-click="loadUserAds('Inactive')">Inactive</a></li>
+                                <li><a href="" ng-class="getClass('/user/ads/rejected')" ng-click="loadUserAds('Rejected')">Rejected</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <!-- different views from routes are displayed here -->
-                <div class="col-md-9 col-sm-9 col-xs-11" ng-view >
-                    <!-- right-sidebar, towns and categories menus -->
-                </div>
+                <div class="col-md-9 col-sm-9 col-xs-11" ng-view >main content with categories and towns in</div>
             </div>
         </div>
     </body>

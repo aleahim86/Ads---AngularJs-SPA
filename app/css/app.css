@@ -15,25 +15,38 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     background: #e2f0d9;
 }
-header, footer{
-    padding: 12px 0;
-    text-align: center;
+#mainSiteNav, .login-register-forms, .publis-new-add-form, .edit-ad-form{
     background: #a9d18e;
+    border: 1px solid #507e32;
 }
-header{
+.edit-ad-form{
+    border-radius: 5px !important;
+}
+.edit-ad-form .form-group{
+    text-align: center !important;
+}
+.login-register-forms legend, .publis-new-add-form legend{
     border-bottom: 1px solid #507e32;
+    padding: 6px;
 }
-footer{
-    border-top: 1px solid #507e32;
-    margin-top: 20px;
+.login-register-forms .centerd-buttons{
+    text-align:center;
 }
+.sidebar-nav{
+    padding-left: 20px !important;
+}
+.centerd-buttons{
+    text-align: center !important;
+}
+
 .boxDefault{
     padding: 20px;
-    margin-top: 20px;
+    margin-bottom: 20px;
     background: #a9d18e;
     border: 1px solid #507e32;
     box-shadow: 1px 1px 3px #888888;
     text-align: center;
+    border-radius: 5px;
 }
 .boxTitle{
     margin-bottom: 15px;
@@ -74,99 +87,94 @@ footer{
     border-radius: 10px;
     text-align: center;
 }
-.adHolder{
-    width: 100%;
-    margin-top: 20px;
+
+label, input {
+    display: block;
+    text-align: left !important;
+}
+.label-on-top {
+    width: 100px;
+    display: block;
+    margin-bottom:7px !important;
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    float:left !important;
+}
+#confirm-password-label {
+	width: 160px;
+	float: left !important;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    background: red;
+    cursor: inherit;
+    display: block;
+}
+
+.all-ads-list {
+    list-style-type: none;
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+}
+.all-ads-list li{
     background: #a9d18e;
     border: 1px solid #507e32;
-    box-shadow: 1px 1px 3px #888888;
 }
-.adImageHolder img{
-    width: 100%;
-    background: #c5e0b4;
-    border: 1px dashed #649b3f;
-    padding: 5px;
+
+.ad-info-text {
+    padding-top: 7px;
 }
-.adHolder th{
-    position:relative;
-    padding: 20px 20px 0px 20px;
-}
-.adHolder tr{
+
+.ad-info-paragraph {
 
 }
-.adHolder tr td{
-    padding: 20px 0px 10px 20px;
-    text-align: left;
+
+.ad-edit-buttons{
+    margin-bottom: 5px;
 }
-.adImageHolder{
-    width: 30%;
-    vertical-align: top;
-    padding-right: 0px;
-}
-.adDateHolder{
-    float: right;
-    display: inline;
-    font-weight: normal;
-    font-size: 15px;
-}
-.adTitleHolder{
-    float: left;
-    display: inline;
-}
-.boxAdContent{
-    background: #c5e0b4;
-    border: 1px dashed #649b3f;
-    padding: 5px;
-    margin-right: 20px;
-}
-.boxBorderRadius{
+
+.ad-image {
+    width: 100%;
+    border: 1px solid black;
     border-radius: 10px;
-}
-.paramTitle{
-    text-align: right;
-}
-.editImgHolder{
-    width: 25%;
-}
-.editImgHolder img{
-    width: 80%;
-}
-.inputHolder{
-    text-align:left;
-    float:left;
-}
-#loginFormHolder {
-    width: 50%;
-    margin: 20px auto;
-}
-#regitsterFormHolder .inputHolder{
-    width:50%;
-}
-#loginFormHolder .inputHolder{
-    width:100%;
-}
-#regitsterFormHolder .inputHolder label{
-    width: 100%;
-}
-#loginFormHolder .inputHolder label{
-    width: 100%;
-}
-#loginFormHolder .inputHolder input{
-    width: 100%;
+    margin-bottom: 5px;
 }
 
-#regitsterFormHolder .inputHolder input, #regitsterFormHolder .inputHolder select{
-    width: 90%;
+.ad-image:hover {
+    opacity: 0.8;	
 }
-.formControls{
-    width: 100%;
-    float: left;
-    margin-top: 20px;
+
+.ad-image-container {
+    height: auto;
 }
-.formControls button{
+
+/* ajax loading spinner */
+.spinner  {
 
 }
-#paginationHolder{
-    text-align:center;
+
+.spinner-gif{
+    width: 80px;
+    height: 80px;
 }
+
+/* alert messages*/
+.alerts-div {
+
+}
+
 
